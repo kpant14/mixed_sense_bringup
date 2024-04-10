@@ -19,6 +19,11 @@ def generate_launch_description():
             'gps_delay': '0.0'
         }.items(),
     )
+
+    ros_xrce_agent = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            os.path.join(get_package_share_directory('micro_ros_agent'), 'launch', 'micro_ros_agent_launch.py')),
+    )
     
     offboard_detector = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
@@ -42,12 +47,13 @@ def generate_launch_description():
     foxglove_studio = ExecuteProcess(cmd=["foxglove-studio"])
     foxglove_bridge = IncludeLaunchDescription(XMLLaunchDescriptionSource(
         os.path.join(
-        get_package_share_directory("mixed_sense"),
+        get_package_share_directory("mixed_sense_bringup"),
         "launch/foxglove_bridge.launch",))
     )
 
     return LaunchDescription([
         xrce_gps_bridge,
+        ros_xrce_agent,
         offboard_detector,
         gnss_attack, 
         foxglove_bridge,
