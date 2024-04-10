@@ -15,18 +15,6 @@ def generate_launch_description():
             'gz_args': '-r ' + os.path.join(get_package_share_directory('mixed_sense_bringup'), 'worlds', 'AbuDhabi_MR.sdf')
         }.items(),
     )
- 
-    xrce_gps_bridge = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(
-            os.path.join(get_package_share_directory('px4_gps'), 'launch', 'px4_gps_xrce.launch.py')),
-        launch_arguments={
-            'px4_ns': "",
-            'gz_world_name': "AbuDhabi",
-            'gz_model_name': "x500_1",
-            'gz_spoofer_model_name': "spoofer",
-            'gps_delay': '0.0'
-        }.items(),
-    )
     
     entity_service = Node(
         package='ros_gz_bridge',
@@ -47,23 +35,15 @@ def generate_launch_description():
         executable='mocap_gz_bridge',
         name='mocap_gz_bridge',
         parameters=[
-                {'gz_entity': 'x500_1'},
-                {'mocap_rigid_body': 'drone162'},
+                {'gz_entity': 'cf1'},
+                {'mocap_rigid_body': 'cf1'},
             ]
     ) 
-    
-    onboard_camera_bridge = Node(
-        package='ros_gz_image',
-        executable='image_bridge',
-        arguments=['/camera'],
-        output='screen'
-    )
+
 
     return LaunchDescription([
         gz_sim,
-        xrce_gps_bridge,
         entity_service,
         mocap_gz_bridge,
         qualisys_mocap,
-        onboard_camera_bridge,
     ])

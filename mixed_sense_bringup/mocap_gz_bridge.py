@@ -25,6 +25,8 @@ class MocapGzBridge(Node):
         
         # Subscription to the pose msg from qualisys_mocap node
         self.rigid_body = self.get_parameter('mocap_rigid_body').get_parameter_value().string_value
+        self.get_logger().info(f'Rigid body: {self.rigid_body}')
+
         self.mocap_pose_sub_ = self.create_subscription(
             PoseStamped,
             f'/{self.rigid_body}/pose',
@@ -33,6 +35,8 @@ class MocapGzBridge(Node):
         )
         # Entity information of the model in Gazebo
         self.gz_entity = self.get_parameter('gz_entity').get_parameter_value().string_value
+        self.get_logger().info(f'Gazebo body: {self.gz_entity}')
+
         self.entity = Entity()
         self.entity.name = self.gz_entity
         self.request = SetEntityPose.Request()

@@ -12,7 +12,7 @@ def generate_launch_description():
         PythonLaunchDescriptionSource(
             os.path.join(get_package_share_directory('ros_gz_sim'), 'launch', 'gz_sim.launch.py')),
         launch_arguments={
-            'gz_args': '-r ' + os.path.join(get_package_share_directory('mixed_sense'), 'worlds', 'AbuDhabi_MR.sdf')
+            'gz_args': '-r ' + os.path.join(get_package_share_directory('mixed_sense_bringup'), 'worlds', 'AbuDhabi_MR.sdf')
         }.items(),
     )
     
@@ -42,7 +42,7 @@ def generate_launch_description():
     )
 
     mocap_gz_bridge = Node(
-           package='mixed_sense',
+           package='mixed_sense_bringup',
            executable='mocap_gz_bridge',
            name='mocap_gz_bridge',
            parameters = [
