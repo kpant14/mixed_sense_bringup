@@ -1,0 +1,165 @@
+{
+  "configById": {
+    "3D!1m0tz5a": {
+      "cameraState": {
+        "perspective": true,
+        "distance": 428.68749999911154,
+        "phi": 75.13425625238648,
+        "thetaOffset": 45.9002695417804,
+        "targetOffset": [
+          286.22998741489715,
+          214.25572446071718,
+          3.7030585259971645e-14
+        ],
+        "target": [
+          0,
+          0,
+          0
+        ],
+        "targetOrientation": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "fovy": 18,
+        "near": 2.959,
+        "far": 4983.657
+      },
+      "followMode": "follow-pose",
+      "followTf": "map",
+      "scene": {
+        "enableStats": false,
+        "labelScaleFactor": 10.78,
+        "transforms": {
+          "axisScale": 86.58,
+          "labelSize": 0.5,
+          "editable": true,
+          "lineWidth": 1
+        },
+        "syncCamera": true,
+        "backgroundColor": "#000000",
+        "ignoreColladaUpAxis": false
+      },
+      "transforms": {
+        "frame:map": {
+          "visible": false
+        }
+      },
+      "topics": {
+        "/px4_visualizer/vehicle_pose": {
+          "visible": false,
+          "axisScale": 50,
+          "type": "axis"
+        },
+        "/px4_visualizer/vehicle_velocity": {
+          "visible": false
+        },
+        "/px4_1/detector/in/gz_true_pose": {
+          "visible": true,
+          "axisScale": 50
+        },
+        "/px4_visualizer/vehicle_path": {
+          "visible": true,
+          "gradient": [
+            "#26ff00ff",
+            "#13fc0080"
+          ],
+          "lineWidth": 2
+        },
+        "/px4_visualizer/setpoint_path": {
+          "visible": true,
+          "gradient": [
+            "#fd0800ff",
+            "#ff000080"
+          ],
+          "lineWidth": 1
+        },
+        "/move_base_simple/goal": {
+          "visible": false
+        },
+        "/px4_1/detector/in/gz_true_pose_enu": {
+          "visible": false,
+          "axisScale": 15
+        },
+        "/px4_1/detector/in/gz_true_pose_ned": {
+          "visible": false
+        }
+      },
+      "layers": {
+        "1524e9d4-af46-449b-86f5-84304341a619": {
+          "visible": true,
+          "frameLocked": true,
+          "label": "Grid",
+          "instanceId": "1524e9d4-af46-449b-86f5-84304341a619",
+          "layerId": "foxglove.Grid",
+          "divisions": 10,
+          "lineWidth": 1,
+          "color": "#248eff",
+          "position": [
+            0,
+            0,
+            0
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "order": 1,
+          "size": 1000
+        }
+      },
+      "publish": {
+        "type": "point",
+        "poseTopic": "/move_base_simple/goal",
+        "pointTopic": "/clicked_point",
+        "poseEstimateTopic": "/initialpose",
+        "poseEstimateXDeviation": 0.5,
+        "poseEstimateYDeviation": 0.5,
+        "poseEstimateThetaDeviation": 0.26179939
+      },
+      "imageMode": {}
+    },
+    "Plot!3xnjkfx": {
+      "paths": [
+        {
+          "timestampMethod": "receiveTime",
+          "value": "/px4_1/fmu/out/estimator_status.pos_test_ratio",
+          "enabled": true,
+          "color": "#03f500",
+          "lineSize": 2
+        },
+        {
+          "timestampMethod": "receiveTime",
+          "value": "/px4_1/detector/out/observer_output.detector_threshold",
+          "enabled": true,
+          "color": "#ff0000",
+          "lineSize": 2
+        }
+      ],
+      "minYValue": 0,
+      "showXAxisLabels": true,
+      "showYAxisLabels": true,
+      "showLegend": false,
+      "legendDisplay": "floating",
+      "showPlotValuesInLegend": false,
+      "isSynced": true,
+      "xAxisVal": "timestamp",
+      "sidebarDimension": 240,
+      "followingViewWidth": 5,
+      "maxYValue": 2
+    }
+  },
+  "globalVariables": {},
+  "userNodes": {},
+  "playbackConfig": {
+    "speed": 1
+  },
+  "layout": {
+    "first": "3D!1m0tz5a",
+    "second": "Plot!3xnjkfx",
+    "direction": "column",
+    "splitPercentage": 50.264550264550266
+  }
+}
