@@ -15,10 +15,14 @@ class MocapGzBridge(Node):
         super().__init__("mocap_gz_bridge")
         
         self.declare_parameter('gz_entity', 'x500_1')
+        self.declare_parameter('gz_world_name', 'AbuDhabi')
         self.declare_parameter('mocap_rigid_body', 'drone162')
-        
+    
         # Client for setting the entity state in Gazebo
-        self.client = self.create_client(SetEntityPose, "/world/AbuDhabi/set_pose")
+        self.gz_world_name = self.get_parameter('gz_world_name').get_parameter_value().string_value
+        self.get_logger().info(f'World Name: {self.gz_world_name}')
+
+        self.client = self.create_client(SetEntityPose, f"/world/{self.gz_world_name}/set_pose")
         while not self.client.wait_for_service(timeout_sec=1.0):
             self.get_logger().info('gazebo set_entity_state service is not available, waiting...')
         
