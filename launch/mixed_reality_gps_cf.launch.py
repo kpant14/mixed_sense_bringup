@@ -8,27 +8,9 @@ from ament_index_python.packages import get_package_share_directory
 
 
 def generate_launch_description(): 
-    xrce_gps_bridge_1 = IncludeLaunchDescription(
+    fdir_mixed = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
-            os.path.join(get_package_share_directory('px4_gps'), 'launch', 'px4_gps_xrce.launch.py')),
-        launch_arguments={
-            'px4_ns': "px4_1",
-            'gz_world_name': "AbuDhabiSwarm",
-            'gz_model_name': "x500_1",
-            'gz_spoofer_model_name': "spoofer",
-            'gps_delay': '0.0'
-        }.items(),
-    )
-    xrce_gps_bridge_2 = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(
-            os.path.join(get_package_share_directory('px4_gps'), 'launch', 'px4_gps_xrce.launch.py')),
-        launch_arguments={
-            'px4_ns': "px4_2",
-            'gz_world_name': "AbuDhabiSwarm",
-            'gz_model_name': "x500_2",
-            'gz_spoofer_model_name': "spoofer",
-            'gps_delay': '0.0'
-        }.items(),
+            os.path.join(get_package_share_directory('mas_fdir'), 'launch', 'fdir_mixed_launch.py')),
     )
     
     entity_service = Node(
@@ -50,7 +32,7 @@ def generate_launch_description():
         executable='mocap_gz_bridge',
         name='mocap_gz_bridge',
         parameters=[
-                {'gz_entity': 'cf1'},
+                {'gz_entity': 'cf_1'},
                 {'gz_world_name': "AbuDhabiSwarm"},
                 {'mocap_rigid_body': 'cf1'},
             ]
@@ -60,7 +42,7 @@ def generate_launch_description():
         executable='mocap_gz_bridge',
         name='mocap_gz_bridge',
         parameters=[
-                {'gz_entity': 'cf2'},
+                {'gz_entity': 'cf_2'},
                 {'gz_world_name': "AbuDhabiSwarm"},
                 {'mocap_rigid_body': 'cf2'},
             ]
@@ -70,18 +52,29 @@ def generate_launch_description():
         executable='mocap_gz_bridge',
         name='mocap_gz_bridge',
         parameters=[
-                {'gz_entity': 'cf3'},
+                {'gz_entity': 'cf_3'},
                 {'gz_world_name': "AbuDhabiSwarm"},
                 {'mocap_rigid_body': 'cf3'},
             ]
     ) 
 
+    mocap_gz_bridge_4 = Node(
+        package='mixed_sense_bringup',
+        executable='mocap_gz_bridge',
+        name='mocap_gz_bridge',
+        parameters=[
+                {'gz_entity': 'cf_4'},
+                {'gz_world_name': "AbuDhabiSwarm"},
+                {'mocap_rigid_body': 'cf4'},
+            ]
+    ) 
+
     return LaunchDescription([
-        xrce_gps_bridge_1,
-        xrce_gps_bridge_2,
+        fdir_mixed,
         entity_service,
         mocap_gz_bridge_1,
         mocap_gz_bridge_2,
         mocap_gz_bridge_3,
+        mocap_gz_bridge_4,
         qualisys_mocap,
     ])
